@@ -1,0 +1,95 @@
+# 📘 GitHub Öğretici – Adım Adım Rehber
+
+Bu dokümanda, **yeni GitHub hesabını entegre etme**, **repo oluşturma**, **commit/branch işlemleri** ve **Pull Request (PR) ile merge** süreci anlatılmaktadır.  
+Her adım hem **terminal (VS Code terminali)** hem de **GitHub web arayüzü** üzerinden takip edilebilir.  
+
+---
+
+## 🔹 1. GitHub Hesabı Entegrasyonu
+
+### Git kullanıcı bilgilerini ayarla
+```bash
+git config --global user.name "YeniKullaniciAdin"
+git config --global user.email "mail@ornek.com"
+```
+### Doğrulamak için
+git config --global --list
+
+## 🔹 2. Yeni Repo Oluşturma
+
+GitHub üzerinde
+GitHub → New Repository
+İsim: github-ogretici
+Create repository → linkini al (örn: git@github.com:kullaniciadi/github-ogretici.git)
+### Lokalde
+mkdir github-ogretici
+cd github-ogretici
+git init
+git branch -m main
+git remote add origin git@github.com:kullaniciadi/github-ogretici.git
+
+## 🔹 3. İlk Commit (main branch)
+echo "# GitHub Öğretici" > README.md
+git add README.md
+git commit -m "ilk commit"
+git push -u origin main
+
+👉 GitHub web arayüzünde artık README.md dosyasını göreceksin.
+
+## 🔹 4. Yeni Branch Açma
+git checkout -b feature-ikinci-commit
+
+Commit etmek için;
+git add .
+git commit -m "ikinci commit eklendi"
+git push -u origin feature-ikinci-commit
+
+👉 GitHub web arayüzünde feature-ikinci-commit branch’i görünecek.
+
+## 🔹 5. Pull Request (PR) Açma
+GitHub web arayüzünde:
+1.Repo sayfasına git.
+2.Compare & pull request butonuna tıkla.
+3.PR sayfasında değişiklikleri kontrol et.
+4.Create pull request butonuna tıkla.
+5.Merge pull request seçeneğini seç.
+6.Confirm merge ile onayla.
+
+## 🔹 6. Merge Sonrası Güncelleme
+Lokal main’i güncelle:
+git checkout main
+git pull origin main
+
+## 🔹 7. Branch Silme
+git branch -d feature-ikinci-commit
+git push origin --delete feature-ikinci-commit
+
+# ✅ Özet Akış
+
+- Git kullanıcı bilgilerini ayarla  
+- GitHub repo oluştur  
+- Lokal repo bağla (`git init`, `git remote add`)  
+- İlk commit → main branch  
+- Yeni branch aç → commit → push  
+- GitHub’da PR aç ve merge et  
+- Lokal main’i güncelle → eski branch’i sil  
+
+# 📝 Sık Kullanılan Git Komutları – Mini Tablo
+
+| Komut | Açıklama |
+|-------|-----------|
+| `git init` | Yeni bir Git repo başlatır |
+| `git clone <url>` | Var olan bir GitHub reposunu indirir |
+| `git status` | Çalışma alanındaki değişiklikleri gösterir |
+| `git add <dosya>` | Dosyayı staging area’ya ekler |
+| `git add .` | Tüm değişiklikleri staging area’ya ekler |
+| `git commit -m "mesaj"` | Commit oluşturur |
+| `git log --oneline` | Commit geçmişini kısaca gösterir |
+| `git branch` | Mevcut branch’leri listeler |
+| `git checkout -b <isim>` | Yeni branch oluşturur ve o branch’e geçer |
+| `git checkout <isim>` | Belirtilen branch’e geçiş yapar |
+| `git merge <branch>` | Belirtilen branch’i bulunduğun branch ile birleştirir |
+| `git push -u origin <branch>` | Commit’leri GitHub’a gönderir |
+| `git pull origin <branch>` | GitHub’daki güncellemeleri çeker |
+| `git branch -d <isim>` | Lokal branch’i siler |
+| `git push origin --delete <isim>` | Uzak (GitHub) branch’i siler |
